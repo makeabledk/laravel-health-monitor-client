@@ -29,9 +29,9 @@ class HealthMonitorClientInstall extends Command
             '--force' => true,
         ]);
 
-        if (! getenv('HEALTH_TOKEN')) {
-            if (! file_exists(app()->environmentFilePath())) {
-                copy(__DIR__.'../../env.example', app()->environmentFilePath());
+        if (is_null(config('monitor.api-token'))) {
+            if(! file_exists(app()->environmentFilePath())) {
+                copy(__DIR__.'/../../.env.example', app()->environmentFilePath());
             }
             $this->setEnvHealthToken();
         }
@@ -52,6 +52,7 @@ class HealthMonitorClientInstall extends Command
         fwrite($fp, $str);
         fclose($fp);
 
+        config()->set('monitor.api-token', $token);
         $this->info('New Health Monitor Token: '.$token);
     }
 }

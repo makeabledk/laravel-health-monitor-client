@@ -14,21 +14,18 @@ class InstallCommandTest extends TestCase
     {
         parent::tearDown();
 
-        $envFile = app()->environmentFilePath();
-        $str = file_get_contents($envFile);
-
-        $str = strtok($str, '=').'=';
-
-        $fp = fopen($envFile, 'w');
-        fwrite($fp, $str);
-        fclose($fp);
+        unlink(app()->environmentFilePath());
     }
 
     /** @test */
     public function it_install_a_token_and_publish_config_files()
     {
+        Artisan::call('config:clear');
         Artisan::call('health:install');
 
+        $this->assertFileExists(app()->environmentFilePath());
+        $this->assertFileExists(app()->configPath().'/monitor.php');
+        $this->assertFileExists(app()->configPath().'/health/config.php');
         $this->assertIsString(config('monitor.api-token'));
     }
 }
