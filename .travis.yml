@@ -11,6 +11,7 @@ cache:
     - $HOME/.composer/cache
 
 env:
+  - HEALTH_TOKEN=
   matrix:
     - COMPOSER_FLAGS=""
 
