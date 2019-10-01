@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 use Illuminate\Encryption\Encrypter;
 use Illuminate\Support\Facades\Artisan;
 
-class HealthInstall extends Command
+class HealthMonitorClientInstall extends Command
 {
     /**
      * The name and signature of the console command.
