@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Makeable\HealthMonitorClient\Commands;
 
 use Illuminate\Console\Command;
@@ -23,9 +22,6 @@ class HealthMonitorClientInstall extends Command
      */
     protected $description = 'Install health monitor client';
 
-    /**
-     *
-     */
     public function handle()
     {
         Artisan::call('vendor:publish', [
@@ -33,9 +29,9 @@ class HealthMonitorClientInstall extends Command
             '--force' => true,
         ]);
 
-        if(! getenv("HEALTH_TOKEN")) {
+        if (! getenv('HEALTH_TOKEN')) {
             $this->setEnvHealthToken();
-        };
+        }
 
         $this->info('Health monitor installed');
     }
@@ -47,12 +43,12 @@ class HealthMonitorClientInstall extends Command
 
         $token = base64_encode(Encrypter::generateKey($this->laravel['config']['app.cipher']));
 
-        $str = str_replace("HEALTH_TOKEN=", "HEALTH_TOKEN={$token}\n", $str);
+        $str = str_replace('HEALTH_TOKEN=', "HEALTH_TOKEN={$token}\n", $str);
 
         $fp = fopen($envFile, 'w');
         fwrite($fp, $str);
         fclose($fp);
 
-        $this->info("New Health Monitor Token: ".$token);
+        $this->info('New Health Monitor Token: '.$token);
     }
 }
