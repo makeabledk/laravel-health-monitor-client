@@ -5,6 +5,7 @@ namespace Makeable\HealthMonitorClient\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Encryption\Encrypter;
+use Illuminate\Support\Facades\Artisan;
 
 class HealthInstall extends Command
 {
@@ -27,9 +28,10 @@ class HealthInstall extends Command
      */
     public function handle()
     {
-        // Extract standard health configuration to project
-
-
+        Artisan::call('vendor:publish', [
+            '--provider' => 'Makeable\HealthMonitorClient\HealthMonitorClientServiceProvider',
+            '--force' => true,
+        ]);
 
         if(! getenv("HEALTH_TOKEN")) {
             $this->setEnvHealthToken();

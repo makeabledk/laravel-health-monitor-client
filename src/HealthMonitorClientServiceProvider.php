@@ -41,7 +41,7 @@ class HealthMonitorClientServiceProvider extends ServiceProvider
                     'health/config.php'
                 ),
                 __DIR__.'/config/monitor.php' => config_path(
-                    'monitor/config.php'
+                    'monitor.php'
                 ),
                 __DIR__.'/config/resources/' => config_path(
                     'health/resources/'

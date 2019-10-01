@@ -47,7 +47,7 @@ return [
         |
         */
         'enabled' => [
-            'AppKey',
+//            'AppKey',
             'Backup',
             // 'Broadcasting',
             'Cache',
@@ -276,6 +276,41 @@ return [
                 'name' => 'pragmarx.health.check',
                 'action' => "{$namespace}@check",
                 'middleware' => [HealthMonitorAuthentication::class],
+            ],
+
+            [
+                'uri' => "{$route_prefix}/resources",
+                'name' => 'pragmarx.health.resources.all',
+                'action' => "{$namespace}@allResources",
+                'middleware' => [],
+            ],
+
+            [
+                'uri' => "{$route_prefix}/resources/{slug}",
+                'name' => 'pragmarx.health.resources.get',
+                'action' => "{$namespace}@getResource",
+                'middleware' => [],
+            ],
+
+            [
+                'uri' => "{$route_prefix}/assets/css/app.css",
+                'name' => 'pragmarx.health.assets.css',
+                'action' => "{$namespace}@assetAppCss",
+                'middleware' => [],
+            ],
+
+            [
+                'uri' => "{$route_prefix}/assets/js/app.js",
+                'name' => 'pragmarx.health.assets.js',
+                'action' => "{$namespace}@assetAppJs",
+                'middleware' => [],
+            ],
+
+            [
+                'uri' => "{$route_prefix}/config",
+                'name' => 'pragmarx.health.config',
+                'action' => "{$namespace}@config",
+                'middleware' => [],
             ],
         ],
     ],

@@ -4,7 +4,3 @@ checker: Makeable\HealthMonitorClient\Checkers\Backup
 column_size: 3
 notify: false
 error_message: "Got a wrong value back from Backup Health Monitor."
-targets:
-  - default:
-      key: "health:bhm:key"
-      should_return: true
