@@ -30,7 +30,7 @@ class HealthMonitorClientInstall extends Command
         ]);
 
         if (is_null(config('monitor.api-token'))) {
-            if(! file_exists(app()->environmentFilePath())) {
+            if (! file_exists(app()->environmentFilePath())) {
                 copy(__DIR__.'/../../.env.example', app()->environmentFilePath());
             }
             $this->setEnvHealthToken();
