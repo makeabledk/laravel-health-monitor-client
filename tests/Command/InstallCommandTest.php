@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Makeable\HealthMonitorClient\Tests\Command;
 
 use Illuminate\Support\Facades\Artisan;
@@ -24,7 +23,6 @@ class InstallCommandTest extends TestCase
         fwrite($fp, $str);
         fclose($fp);
     }
-
 
     /** @test */
     public function it_test_an_command()

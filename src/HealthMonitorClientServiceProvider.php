@@ -8,7 +8,6 @@ use Makeable\HealthMonitorClient\Middleware\HealthMonitorAuthentication;
 
 class HealthMonitorClientServiceProvider extends ServiceProvider
 {
-
     /**
      * Bootstrap the application services.
      *
@@ -23,9 +22,6 @@ class HealthMonitorClientServiceProvider extends ServiceProvider
         app('router')->aliasMiddleware('health-api', HealthMonitorAuthentication::class);
     }
 
-    /**
-     *
-     */
     public function register()
     {
         $this->mergeConfig();

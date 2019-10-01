@@ -4,7 +4,6 @@ namespace Makeable\HealthMonitorClient\Middleware;
 
 use Closure;
 use Illuminate\Auth\AuthenticationException;
-use Illuminate\Support\Facades\Auth;
 
 class HealthMonitorAuthentication
 {

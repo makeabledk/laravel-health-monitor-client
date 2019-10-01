@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Makeable\HealthMonitorClient\Checkers;
 
 use PragmaRX\Health\Checkers\Base;
@@ -22,6 +21,7 @@ class Backup extends Base
 
             if ($backupDestinationStatus->isHealthy()) {
                 $this->info("The backups on {$diskName} are considered healthy.");
+
                 return $this->makeResult(
                     true,
                     'The backups are considered healthy'
@@ -29,13 +29,11 @@ class Backup extends Base
             }
 
             $this->error("The backups on {$diskName} are considered unhealthy!");
+
             return $this->makeResult(
                 false,
                 'The backups are considered unhealthy'
             );
         });
-
-
-
     }
 }
