@@ -25,7 +25,7 @@ class InstallCommandTest extends TestCase
     }
 
     /** @test */
-    public function it_test_an_command()
+    public function it_install_a_token_and_publish_config_files()
     {
         Artisan::call('health:install');
 
