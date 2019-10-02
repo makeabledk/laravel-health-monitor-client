@@ -59,12 +59,5 @@ class HealthMonitorClientServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/config/health.php', 'health');
 
         $this->mergeConfigFrom(__DIR__.'/config/monitor.php', 'monitor');
-
-        $this->addDistPathToConfig();
-    }
-
-    public function addDistPathToConfig()
-    {
-        config(['health.dist_path' => __DIR__.'/resources/dist']);
     }
 }
