@@ -24,6 +24,9 @@ class TestCase extends BaseTestCase
         $app = require __DIR__.'/../vendor/laravel/laravel/bootstrap/app.php';
         $app->make(Kernel::class)->bootstrap();
 
+        $health = include __DIR__.'/../src/config/health.php';
+        config()->set('health', $health);
+
         $app->register(ServiceProvider::class);
         $app->register(HealthMonitorClientServiceProvider::class);
 
