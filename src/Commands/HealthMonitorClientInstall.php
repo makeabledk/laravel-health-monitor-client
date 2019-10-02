@@ -29,7 +29,7 @@ class HealthMonitorClientInstall extends Command
             '--force' => true,
         ]);
 
-        if (is_null(config('monitor.api-token'))) {
+        if (empty(config('monitor.monitor-token'))) {
             if (! file_exists(app()->environmentFilePath())) {
                 copy(__DIR__.'/../../.env.example', app()->environmentFilePath());
             }
@@ -44,7 +44,7 @@ class HealthMonitorClientInstall extends Command
         $envFile = app()->environmentFilePath();
         $str = file_get_contents($envFile);
 
-        $token = base64_encode(Encrypter::generateKey($this->laravel['config']['app.cipher']));
+        $token = sha1(Encrypter::generateKey($this->laravel['config']['app.cipher']));
 
         $str = str_replace('HEALTH_TOKEN=', "HEALTH_TOKEN={$token}\n", $str);
 

@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'api-token' => env('HEALTH_TOKEN'),
+    'monitor-token' => env('MONITOR_TOKEN'),
 ];
