@@ -26,6 +26,6 @@ class InstallCommandTest extends TestCase
         $this->assertFileExists(app()->environmentFilePath());
         $this->assertFileExists(app()->configPath().'/monitor.php');
         $this->assertFileExists(app()->configPath().'/health/config.php');
-        $this->assertIsString(config('monitor.api-token'));
+        $this->assertIsString(config('monitor.token'));
     }
 }
