@@ -47,7 +47,7 @@ return [
         |
         */
         'enabled' => [
-//            'AppKey',
+            'AppKey',
             'Backup',
             // 'Broadcasting',
             'Cache',
