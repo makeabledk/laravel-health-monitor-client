@@ -17,7 +17,7 @@ class HealthMonitorAuthentication
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if ($request->token != config('monitor.api-token')) {
+        if ($request->token != config('monitor.token')) {
             throw new AuthenticationException('Unauthenticated.');
         }
 

@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'monitor-token' => env('MONITOR_TOKEN'),
+    'token' => env('MONITOR_TOKEN'),
 ];

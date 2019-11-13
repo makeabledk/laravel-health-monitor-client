@@ -25,5 +25,12 @@
     },
     "scripts": {
         "test": "./vendor/bin/phpunit"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Makeable\\HealthMonitorClient\\HealthMonitorClientServiceProvider"
+            ]
+        }
     }
 }

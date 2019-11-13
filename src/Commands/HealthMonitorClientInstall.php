@@ -52,7 +52,7 @@ class HealthMonitorClientInstall extends Command
         fwrite($fp, $str);
         fclose($fp);
 
-        config()->set('monitor.api-token', $token);
+        config()->set('monitor.token', $token);
         $this->info('New Health Monitor Token: '.$token);
     }
 }

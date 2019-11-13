@@ -10,7 +10,7 @@ class HealthMonitorClientTest extends TestCase
     /** @test */
     public function it_checks_that_backup_health_check_is_included_in_health_check()
     {
-        config()->set('monitor.api-token', 'secret');
+        config()->set('monitor.token', 'secret');
 
         $this
             ->getJson('/health/check?token=secret')
