@@ -2,7 +2,6 @@
 
 namespace Makeable\HealthMonitorClient\Tests\Api;
 
-use Illuminate\Foundation\Testing\TestResponse;
 use Makeable\HealthMonitorClient\Tests\TestCase;
 
 class HealthMonitorClientTest extends TestCase
