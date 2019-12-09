@@ -16,24 +16,17 @@ class Backup extends Base
     {
         $statuses = BackupDestinationStatusFactory::createForMonitorConfig(config('backup.monitor_backups'));
 
-        $statuses->each(function (BackupDestinationStatus $backupDestinationStatus) {
-            $diskName = $backupDestinationStatus->backupDestination()->diskName();
+        $statuses->filter(function (BackupDestinationStatus $backupDestinationStatus) {
+            return $backupDestinationStatus->isHealthy();
+        });
 
-            if ($backupDestinationStatus->isHealthy()) {
-                $this->info("The backups on {$diskName} are considered healthy.");
-
-                return $this->makeResult(
-                    true,
-                    'The backups are considered healthy'
-                );
-            }
-
-            $this->error("The backups on {$diskName} are considered unhealthy!");
-
-            return $this->makeResult(
+        if ($statuses->isEmpty()) {
+            $this->makeResult(
                 false,
                 'The backups are considered unhealthy'
             );
-        });
+        }
+
+        return $this->makeHealthyResult();
     }
 }

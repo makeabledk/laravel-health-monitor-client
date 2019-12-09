@@ -48,7 +48,7 @@ return [
         */
         'enabled' => [
             'AppKey',
-            // 'Backup',
+             'Backup',
             // 'Broadcasting',
             'Cache',
             // 'ConfigurationCached',
