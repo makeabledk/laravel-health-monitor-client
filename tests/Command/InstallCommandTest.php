@@ -10,7 +10,7 @@ class InstallCommandTest extends TestCase
     /**
      * @throws \Throwable
      */
-    public function tearDown() : void
+    public function tearDown(): void
     {
         parent::tearDown();
 
