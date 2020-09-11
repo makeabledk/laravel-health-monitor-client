@@ -3,7 +3,6 @@
 namespace Makeable\HealthMonitorClient\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Encryption\Encrypter;
 use Illuminate\Support\Facades\Artisan;
 use Makeable\HealthMonitorClient\HealthMonitorClientServiceProvider;
 
