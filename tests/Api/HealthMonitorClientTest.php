@@ -11,10 +11,12 @@ class HealthMonitorClientTest extends TestCase
     {
         config()->set('monitor.token', 'secret');
 
-        $response = $this->getJson('/health/check?token=secret');
-
-        $data = json_decode($response->content(), true);
-        $this->assertTrue(isset($data['Backup']));
+        $this
+            ->getJson('/health/check?token=secret')
+            ->assertSuccessful()
+            ->assertJsonStructure([
+                'Backup' => ['id', 'name', 'targets']
+            ]);
     }
 
     /** @test */
@@ -22,13 +24,8 @@ class HealthMonitorClientTest extends TestCase
     {
         config()->set('monitor.api-token', 'right');
 
-        $response = $this->getJson('/health/check?token=wrong');
-
-        $actual = $response->getStatusCode();
-
-        $this->assertTrue(
-            401 === $actual,
-            'Response status code ['.$actual.'] is not an unauthorized status code.'
-        );
+        $this
+            ->getJson('/health/check?token=wrong')
+            ->assertStatus(401);
     }
 }
