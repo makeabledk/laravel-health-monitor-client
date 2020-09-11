@@ -34,7 +34,6 @@ class TokenCommandTest extends TestCase
         Artisan::call('health:token', ['--force' => true]);
         $this->assertStringContainsString('Generated new monitor token:', $newOutput = Artisan::output());
         $this->assertTokenInstalledFromOutput($newOutput);
-
     }
 
     protected function assertTokenInstalledFromOutput($output)
