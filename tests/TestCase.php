@@ -6,7 +6,6 @@ use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\Artisan;
 use Makeable\HealthMonitorClient\HealthMonitorClientServiceProvider;
-use Makeable\HealthMonitorClient\Tests\Helpers\TestHelpers;
 use PragmaRX\Health\ServiceProvider;
 
 class TestCase extends BaseTestCase
