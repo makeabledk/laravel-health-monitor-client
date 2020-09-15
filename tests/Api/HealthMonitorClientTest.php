@@ -15,7 +15,7 @@ class HealthMonitorClientTest extends TestCase
             ->getJson('/health/check?token=secret')
             ->assertSuccessful()
             ->assertJsonStructure([
-                'Backup' => ['id', 'name', 'targets'],
+                'AppKey' => ['id', 'name', 'targets'],
             ]);
     }
 
