@@ -3,7 +3,8 @@
 namespace Makeable\HealthMonitorClient;
 
 use Illuminate\Support\ServiceProvider;
-use Makeable\HealthMonitorClient\Commands\HealthMonitorClientInstall;
+use Makeable\HealthMonitorClient\Commands\HealthMonitorInstall;
+use Makeable\HealthMonitorClient\Commands\HealthMonitorToken;
 use Makeable\HealthMonitorClient\Middleware\HealthMonitorAuthentication;
 
 class HealthMonitorClientServiceProvider extends ServiceProvider
@@ -16,7 +17,10 @@ class HealthMonitorClientServiceProvider extends ServiceProvider
     public function boot()
     {
         if ($this->app->runningInConsole()) {
-            $this->commands([HealthMonitorClientInstall::class]);
+            $this->commands([
+                HealthMonitorInstall::class,
+                HealthMonitorToken::class,
+            ]);
         }
 
         app('router')->aliasMiddleware('health-api', HealthMonitorAuthentication::class);

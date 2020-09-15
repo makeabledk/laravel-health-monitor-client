@@ -6,26 +6,14 @@ use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\Artisan;
 use Makeable\HealthMonitorClient\HealthMonitorClientServiceProvider;
-use Makeable\HealthMonitorClient\Tests\Helpers\TestHelpers;
 use PragmaRX\Health\ServiceProvider;
 
 class TestCase extends BaseTestCase
 {
-    use TestHelpers;
-
-    /**
-     * @return \Illuminate\Foundation\Application
-     */
     public function createApplication()
     {
-        putenv('APP_ENV=testing');
-        putenv('APP_DEBUG=true');
-
         $app = require __DIR__.'/../vendor/laravel/laravel/bootstrap/app.php';
         $app->make(Kernel::class)->bootstrap();
-
-        $health = include __DIR__.'/../src/config/health.php';
-        config()->set('health', $health);
 
         $app->register(ServiceProvider::class);
         $app->register(HealthMonitorClientServiceProvider::class);
@@ -35,9 +23,18 @@ class TestCase extends BaseTestCase
             '--force' => true,
         ]);
 
-        $app['config']->set('database.default', 'sqlite');
-        $app['config']->set('database.connections.sqlite.database', ':memory:');
-
         return $app;
+    }
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        @unlink($file = $this->app->environmentFilePath());
+
+        copy(
+            app()->environmentFilePath().'.example',
+            app()->environmentFilePath()
+        );
     }
 }
