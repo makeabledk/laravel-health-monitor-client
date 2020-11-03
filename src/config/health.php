@@ -47,7 +47,7 @@ return [
         |
         */
         'enabled' => [
-            'API',
+//            'API',
             'AppKey',
             // 'Adyen',
             'Backup',
