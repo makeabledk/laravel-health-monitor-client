@@ -47,15 +47,19 @@ return [
         |
         */
         'enabled' => [
+            'API',
             'AppKey',
+            // 'Adyen',
             'Backup',
             // 'Broadcasting',
             'Cache',
-            // 'ConfigurationCached',
+            'Certificate',
+            'ConfigurationCached',
             'Database',
             'DebugMode',
             // 'DirectoryPermissions',
             'DiskSpace',
+            // 'Dynamics',
             // 'DocuSign',
             // 'ElasticsearchConnectable',
             'EnvExists',
@@ -80,18 +84,20 @@ return [
             // 'PostgreSqlConnectable',
             // 'PostgreSqlServer',
             'Queue',
-            // 'QueueWorkers',
+            'QueueWorkers',
             // 'RebootRequired',
             'Redis',
             'RedisConnectable',
             'RedisServer',
-            // 'RoutesCached',
+            'RoutesCached',
             // 'S3',
             'SecurityChecker',
+            // 'SeeTickets',
+            // 'Sendinblue',
             'ServerLoad',
             // 'ServerUptime',
             // 'Sshd',
-            // 'Supervisor',
+            'Supervisor',
         ],
     ],
 
@@ -207,7 +213,7 @@ return [
         'scheduler' => [
             'enabled' => true,
 
-            'frequency' => 'everyMinute', // most methods on -- https://laravel.com/docs/5.3/scheduling#defining-schedules
+            'frequency' => 'everyFiveMinutes', // most methods on -- https://laravel.com/docs/8.x/scheduling#schedule-frequency-options
         ],
 
         'users' => [
@@ -218,7 +224,7 @@ return [
 
         'channels' => ['mail', 'slack'], // mail, slack
 
-        'notifier' => 'PragmaRX\Health\Notifications',
+        'notifier' => 'PragmaRX\Health\Notifications\HealthStatus',
     ],
 
     'alert' => [
@@ -275,38 +281,56 @@ return [
                 'uri' => "{$route_prefix}/panel",
                 'name' => 'pragmarx.health.panel',
                 'action' => "{$namespace}@panel",
-                'middleware' => [HealthMonitorAuthentication::class],
+                'middleware' => [
+                    HealthMonitorAuthentication::class,
+                    /*'auth.basic'*/
+                ],
             ],
+
             [
                 'uri' => "{$route_prefix}/check",
                 'name' => 'pragmarx.health.check',
                 'action' => "{$namespace}@check",
-                'middleware' => [HealthMonitorAuthentication::class],
+                'middleware' => [
+                    HealthMonitorAuthentication::class,
+                ],
             ],
+
+            [
+                'uri' => "{$route_prefix}/string",
+                'name' => 'pragmarx.health.string',
+                'action' => "{$namespace}@string",
+                'middleware' => [],
+            ],
+
             [
                 'uri' => "{$route_prefix}/resources",
                 'name' => 'pragmarx.health.resources.all',
                 'action' => "{$namespace}@allResources",
                 'middleware' => [],
             ],
+
             [
                 'uri' => "{$route_prefix}/resources/{slug}",
                 'name' => 'pragmarx.health.resources.get',
                 'action' => "{$namespace}@getResource",
                 'middleware' => [],
             ],
+
             [
                 'uri' => "{$route_prefix}/assets/css/app.css",
                 'name' => 'pragmarx.health.assets.css',
                 'action' => "{$namespace}@assetAppCss",
                 'middleware' => [],
             ],
+
             [
                 'uri' => "{$route_prefix}/assets/js/app.js",
                 'name' => 'pragmarx.health.assets.js',
                 'action' => "{$namespace}@assetAppJs",
                 'middleware' => [],
             ],
+
             [
                 'uri' => "{$route_prefix}/config",
                 'name' => 'pragmarx.health.config',
