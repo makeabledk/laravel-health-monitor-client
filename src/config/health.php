@@ -91,7 +91,7 @@ return [
             'RedisServer',
             'RoutesCached',
             // 'S3',
-            'SecurityChecker',
+            // 'SecurityChecker',
             // 'SeeTickets',
             // 'Sendinblue',
             'ServerLoad',
