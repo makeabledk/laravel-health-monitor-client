@@ -9,9 +9,10 @@ class HealthMonitorAuthentication
 {
     /**
      * @param $request
-     * @param Closure $next
-     * @param null $guard
+     * @param  Closure  $next
+     * @param  null  $guard
      * @return mixed
+     *
      * @throws AuthenticationException
      * @throws AuthenticationException
      */
