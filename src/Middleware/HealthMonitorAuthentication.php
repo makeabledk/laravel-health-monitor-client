@@ -8,7 +8,7 @@ use Illuminate\Auth\AuthenticationException;
 class HealthMonitorAuthentication
 {
     /**
-     * @param $request
+     * @param  $request
      * @param  Closure  $next
      * @param  null  $guard
      * @return mixed
